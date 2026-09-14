@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero Dot Water Solution | Expert RO Service & Sales</title>
+    
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES --- */
+        :root {
+            --primary-blue: #0033a0;
+            --water-blue: #00a0df;
+            --primary-green: #2a8b22;
+            --dark: #111827;
+            --light: #f3f4f6;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--light); color: var(--dark); overflow-x: hidden; }
+
+        /* --- NAVIGATION & MOBILE MENU --- */
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 12px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); z-index: 1000;
+        }
+        
+        .nav-left { display: flex; align-items: center; gap: 15px; }
+        
+        /* Mobile Menu Toggle */
+        .menu-toggle { display: none; font-size: 1.6rem; color: var(--primary-blue); cursor: pointer; transition: var(--transition); }
+        .menu-toggle:hover { color: var(--water-blue); }
+
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; cursor: pointer; }
+        .logo img { height: 45px; transition: var(--transition); }
+        .logo:hover img { transform: scale(1.05); }
+        
+        .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+        .logo-text .brand-name { font-size: 1.2rem; font-weight: 800; color: var(--primary-blue); letter-spacing: 0.5px; }
+        .logo-text .sub-name { font-size: 0.8rem; font-weight: 600; color: var(--primary-green); letter-spacing: 1px; }
+
+        .nav-links { list-style: none; display: flex; gap: 25px; align-items: center; }
+        .nav-links li a { text-decoration: none; color: var(--dark); font-weight: 600; font-size: 0.95rem; transition: var(--transition); }
+        .nav-links li a:hover { color: var(--water-blue); }
+
+        .btn-call {
+            background: linear-gradient(45deg, var(--primary-blue), var(--water-blue));
+            color: var(--white) !important; padding: 10px 25px; border-radius: 30px; text-decoration: none;
+            font-weight: 600; box-shadow: 0 4px 15px rgba(0, 160, 223, 0.3); transition: var(--transition);
+            display: inline-flex; align-items: center; gap: 8px;
+        }
+        .btn-call:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0, 160, 223, 0.5); }
+
+        /* Mobile Menu Drawer Overlay */
+        .menu-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0,0,0,0.5);
+            z-index: 998; opacity: 0; visibility: hidden; transition: var(--transition);
+        }
+        .menu-overlay.active { opacity: 1; visibility: visible; }
+
+        /* --- HERO SECTION --- */
+        #home {
+            position: relative; height: 100vh; min-height: 600px; display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, #001f3f 0%, #005bb5 100%); color: white; overflow: hidden; padding-top: 60px;
+        }
+
+        .bubbles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+        .bubbles li { position: absolute; list-style: none; display: block; width: 20px; height: 20px; background: rgba(255, 255, 255, 0.2); bottom: -150px; border-radius: 50%; animation: rise 20s infinite ease-in; }
+        .bubbles li:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
+        .bubbles li:nth-child(2) { left: 10%; width: 30px; height: 30px; animation-delay: 2s; animation-duration: 12s; }
+        .bubbles li:nth-child(3) { left: 70%; width: 40px; height: 40px; animation-delay: 4s; }
+        
+        @keyframes rise { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(-1000px) rotate(360deg); opacity: 0; } }
+
+        .hero-content { position: relative; z-index: 2; text-align: center; max-width: 900px; padding: 0 20px; }
+        .hero-content h1 { font-size: 3.5rem; margin-bottom: 20px; animation: slideDown 1s ease-out; line-height: 1.2; }
+        .hero-content h1 span { color: #00ffcc; text-shadow: 0 0 10px rgba(0,255,204,0.5); }
+        .hero-content p { font-size: 1.15rem; margin-bottom: 30px; opacity: 0.95; animation: slideUp 1.2s ease-out; }
+
+        .btn-whatsapp {
+            background: #25D366; color: white; padding: 14px 32px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 1.1rem; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); transition: var(--transition); animation: pulse 2s infinite;
+        }
+        .btn-whatsapp:hover { background: #1da851; transform: scale(1.05); }
+
+        .waves { position: absolute; bottom: 0; left: 0; width: 100%; height: 90px; z-index: 2; }
+        .parallax > use { animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite; }
+        .parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 7s; }
+        .parallax > use:nth-child(2) { animation-delay: -3s; animation-duration: 10s; }
+        @keyframes move-forever { 0% { transform: translate3d(-90px,0,0); } 100% { transform: translate3d(85px,0,0); } }
+
+        /* --- INTERACTIVE SERVICES SECTION --- */
+        #services { padding: 80px 5%; background: var(--light); text-align: center; }
+        .section-title { font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 10px; font-weight: 700; }
+        .section-subtitle { color: #666; margin-bottom: 40px; font-size: 1.05rem; }
+        
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .service-card {
+            background: var(--white); padding: 40px 25px; border-radius: 20px; text-align: center; cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04); transition: var(--transition); border: 2px solid transparent; position: relative; overflow: hidden;
+        }
+        .service-card:hover { transform: translateY(-8px); border-color: rgba(0, 160, 223, 0.3); box-shadow: 0 15px 40px rgba(0,160,223,0.15); }
+        .service-card i.main-icon { font-size: 3.2rem; color: var(--water-blue); margin-bottom: 20px; transition: var(--transition); }
+        .service-card:hover i.main-icon { transform: scale(1.1); color: var(--primary-blue); }
+        .service-card h3 { font-size: 1.4rem; color: var(--dark); margin-bottom: 12px; }
+        .service-card p { font-size: 0.95rem; color: #555; margin-bottom: 15px;}
+        
+        /* Modern Click Hint Button */
+        .click-hint {
+            display: inline-flex; align-items: center; gap: 6px; font-size: 0.85rem; font-weight: 600; color: var(--primary-blue);
+            background: rgba(0, 160, 223, 0.08); padding: 8px 18px; border-radius: 20px; transition: var(--transition); margin-top: 5px;
+        }
+        .service-card:hover .click-hint { background: var(--primary-blue); color: var(--white); }
+        .click-hint i { font-size: 0.7rem; transition: transform 0.3s ease; }
+        .service-card:hover .click-hint i { transform: translateX(5px); }
+
+        /* --- BRANDS & SPARE PARTS SECTION --- */
+        #inventory { padding: 80px 5%; background: var(--white); }
+        .inventory-container { display: flex; flex-wrap: wrap; gap: 40px; }
+        .inventory-box {
+            flex: 1; min-width: 300px; background: rgba(255, 255, 255, 0.5); border: 1px solid rgba(0, 160, 223, 0.15);
+            padding: 35px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+        }
+        .inventory-box h3 { font-size: 1.4rem; color: var(--primary-blue); margin-bottom: 20px; border-bottom: 3px solid var(--primary-green); display: inline-block; padding-bottom: 5px; }
+        
+        .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 25px; }
+        .tag { background: var(--light); color: var(--dark); padding: 8px 16px; border-radius: 20px; font-weight: 600; font-size: 0.9rem; border: 1px solid #eaeaea; transition: var(--transition); }
+        .tag:hover { background: var(--water-blue); color: var(--white); border-color: var(--water-blue); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,160,223,0.2);}
+        .tag.brand { background: rgba(0, 51, 160, 0.05); color: var(--primary-blue); border-color: rgba(0, 51, 160, 0.2); }
+        .tag.brand:hover { background: var(--primary-blue); color: var(--white); }
+
+        /* --- CONTACT & LOCATIONS --- */
+        #contact { padding: 80px 5%; background: linear-gradient(135deg, var(--dark) 0%, #1f2937 100%); color: var(--white); }
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .contact-card { background: rgba(255, 255, 255, 0.03); padding: 35px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.08); }
+        .contact-card h3 { color: #00ffcc; font-size: 1.4rem; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; }
+        
+        .contact-card p { font-size: 1.05rem; margin-bottom: 15px; display: flex; align-items: center; gap: 15px; }
+        .phone-link { color: var(--white); text-decoration: none; font-weight: 600; transition: var(--transition); font-size: 1.2rem; }
+        .phone-link:hover { color: var(--water-blue); }
+        
+        .loc-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+        .loc-tag { background: rgba(255, 255, 255, 0.1); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; color: #e5e7eb; }
+
+        /* --- POPUP MODAL STYLING --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(5px);
+            z-index: 2000; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: var(--transition); padding: 20px;
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-content {
+            background: var(--white); width: 100%; max-width: 550px; border-radius: 20px; overflow: hidden;
+            transform: scale(0.9) translateY(30px); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative;
+        }
+        .modal-overlay.active .modal-content { transform: scale(1) translateY(0); }
+        
+        .modal-close {
+            position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.6); color: white; width: 32px; height: 32px;
+            border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.1rem; cursor: pointer; transition: var(--transition); z-index: 10; border: none;
+        }
+        .modal-close:hover { background: #ff4757; transform: rotate(90deg); }
+        
+        .modal-image { width: 100%; height: 220px; object-fit: cover; }
+        .modal-body { padding: 30px; text-align: left; }
+        .modal-body h2 { color: var(--primary-blue); font-size: 1.8rem; margin-bottom: 10px; }
+        .modal-body p { color: #555; line-height: 1.6; margin-bottom: 25px; font-size: 1rem; }
+        
+        /* Floating WhatsApp Button */
+        .float-wa { position: fixed; bottom: 25px; right: 25px; background: #25D366; color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; box-shadow: 0 5px 20px rgba(37,211,102,0.4); z-index: 1500; text-decoration: none; transition: var(--transition); animation: bounce 2s infinite; }
+        .float-wa:hover { transform: scale(1.1); }
+
+        /* --- ANIMATIONS --- */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37,211,102, 0.6); } 70% { box-shadow: 0 0 0 15px rgba(37,211,102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37,211,102, 0); } }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+        /* --- MOBILE RESPONSIVENESS (SMARTPHONES) --- */
+        @media (max-width: 900px) {
+            .menu-toggle { display: block; }
+            .nav-btn-desktop { display: none; } /* Hides top right button on mobile to save space */
+            
+            /* Modern Sidebar App Drawer */
+            .nav-links {
+                position: fixed; top: 0; left: -300px; width: 280px; height: 100vh;
+                background: var(--white); flex-direction: column; padding: 80px 30px; gap: 20px;
+                box-shadow: 10px 0 25px rgba(0,0,0,0.1); align-items: flex-start;
+                transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 999; margin: 0;
+            }
+            .nav-links.active { left: 0; }
+            .nav-links li { width: 100%; border-bottom: 1px solid #f0f0f0; padding-bottom: 10px; }
+            .nav-links li:last-child { border: none; padding-top: 10px; }
+            .nav-links li a { font-size: 1.1rem; display: block; width: 100%; }
+            
+            .logo img { height: 38px; }
+            .logo-text .brand-name { font-size: 1rem; }
+            .logo-text .sub-name { font-size: 0.65rem; }
+            
+            .hero-content h1 { font-size: 2.3rem; }
+            .hero-content p { font-size: 1rem; padding: 0 10px; }
+            .btn-whatsapp { font-size: 1rem; padding: 12px 25px; }
+            
+            .section-title { font-size: 2rem; }
+            .contact-card p { font-size: 1rem; }
+            .phone-link { font-size: 1.1rem; }
+            
+            .modal-content { max-width: 90%; }
+            .modal-body h2 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION WITH SIDEBAR DRAWER -->
+    <nav>
+        <!-- Left Side: Hamburger & Logo -->
+        <div class="nav-left">
+            <div class="menu-toggle" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+            <a href="#home" class="logo">
+                <img src="logo.png" alt="Zero Dot Logo">
+                <div class="logo-text">
+                    <span class="brand-name">ZERO DOT</span>
+                    <span class="sub-name">WATER SOLUTION</span>
+                </div>
+            </a>
+        </div>
+        
+        <!-- Right Side: Links & Call Button -->
+        <ul class="nav-links" id="nav-menu">
+            <li><a href="#home" class="nav-item">Home</a></li>
+            <li><a href="#services" class="nav-item">Services</a></li>
+            <li><a href="#inventory" class="nav-item">Brands & Spares</a></li>
+            <li><a href="#contact" class="nav-item">Contact Us</a></li>
+            <!-- Call button inside mobile menu -->
+            <li class="mobile-only-btn" style="display: block; margin-top: 10px;">
+                <a href="tel:6289402064" class="btn-call" style="width: 100%; justify-content: center;"><i class="fas fa-phone-alt"></i> Tap to Call</a>
+            </li>
+        </ul>
+
+    </nav>
+    
+    <!-- Dark overlay for mobile menu -->
+    <div class="menu-overlay" id="menu-overlay"></div>
+
+    <!-- HERO SECTION -->
+    <header id="home">
+        <ul class="bubbles"><li></li><li></li><li></li></ul>
+        <div class="hero-content">
+            <h1>Expert Water Purifier <br><span>Repair & Services</span></h1>
+            <p>Your trusted experts in Kolkata. We provide 100% genuine spare parts, sales, and rapid installation for all reputed brands. Pure water, guaranteed.</p>
+            <a href="https://wa.me/916294024523?text=Hello,%20I%20am%20looking%20for%20RO%20services." target="_blank" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Book an Expert Now
+            </a>
+        </div>
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none">
+            <defs><path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" /></defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(243, 244, 246, 0.7)" />
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(243, 244, 246, 0.5)" />
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="#f3f4f6" />
+            </g>
+        </svg>
+    </header>
+
+    <!-- INTERACTIVE SERVICES SECTION -->
+    <section id="services" class="reveal">
+        <h2 class="section-title">Our Specialized Services</h2>
+        <p class="section-subtitle">Select a service below to view more details</p>
+        
+        <div class="services-grid">
+            <div class="service-card" onclick="openModal('repair')">
+                <i class="fas fa-wrench main-icon"></i>
+                <h3>Rapid Repair</h3>
+                <p>Fast solutions for leakage and motor issues.</p>
+                <!-- UPDATED: Sleek modern button with thin chevron -->
+                <span class="click-hint">Click to read more <i class="fa-solid fa-chevron-right"></i></span>
+            </div>
+            
+            <div class="service-card" onclick="openModal('service')">
+                <i class="fas fa-tint main-icon"></i>
+                <h3>Routine Service</h3>
+                <p>Complete filter changes and deep cleaning.</p>
+                <span class="click-hint">Click to read more <i class="fa-solid fa-chevron-right"></i></span>
+            </div>
+            
+            <div class="service-card" onclick="openModal('sales')">
+                <i class="fas fa-shopping-cart main-icon"></i>
+                <h3>Sales & Installation</h3>
+                <p>New setups from 8 LPH to Solar Plants.</p>
+                <span class="click-hint">Click to read more <i class="fa-solid fa-chevron-right"></i></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- BRANDS, CAPACITIES & SPARE PARTS -->
+    <section id="inventory" class="reveal">
+        <h2 class="section-title" style="text-align: center;">Genuine Parts & Top Brands</h2>
+        <p class="section-subtitle" style="text-align: center; margin-bottom:40px;">Spare parts from all reputed companies at affordable prices.</p>
+        
+        <div class="inventory-container">
+            <div class="inventory-box">
+                <h3><i class="fas fa-award"></i> Reputed Brands We Service</h3>
+                <div class="tags">
+                    <span class="tag brand">KENT</span>
+                    <span class="tag brand">Aquaguard</span>
+                    <span class="tag brand">ZERO B</span>
+                    <span class="tag brand">Sunexa</span>
+                </div>
+
+                <h3 style="margin-top: 10px;"><i class="fas fa-industry"></i> Plant Capacities</h3>
+                <div class="tags">
+                    <span class="tag">8 LPH</span>
+                    <span class="tag">10 LPH</span>
+                    <span class="tag">25 LPH</span>
+                    <span class="tag">100+ LPH</span>
+                    <span class="tag" style="background:#f59e0b; color:white; border:none;">SOLAR</span>
+                </div>
+            </div>
+
+            <div class="inventory-box">
+                <h3><i class="fas fa-cogs"></i> Available Spare Parts</h3>
+                <p style="margin-bottom: 12px; color: #555; font-size: 0.95rem;">We replace and repair all critical components:</p>
+                <div class="tags">
+                    <span class="tag">S.M.P.S</span>
+                    <span class="tag">PCB / Pic</span>
+                    <span class="tag">Booster Pump</span>
+                    <span class="tag">RO Membrane</span>
+                    <span class="tag">IR Bowl</span>
+                </div>
+                <div style="margin-top: 15px; padding: 12px; background: rgba(42, 139, 34, 0.08); border-radius: 12px; border-left: 3px solid var(--primary-green); font-size: 0.9rem;">
+                    <strong><i class="fas fa-check-circle"></i> Quality Assurance:</strong> All replacements ensure optimal pressure and high TDS reduction.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GET IN TOUCH / LOCATIONS SECTION -->
+    <section id="contact" class="reveal">
+        <h2 class="section-title" style="color: white; text-align: center;">Get In Touch</h2>
+        <p class="section-subtitle" style="color: #aaa; text-align: center; margin-bottom: 40px;">Fast service across our branches and store networks.</p>
+        
+        <div class="contact-grid">
+            <div class="contact-card">
+                <h3><i class="fas fa-headset"></i> Call Our Technicians</h3>
+                <p style="color:#ddd; font-size: 0.95rem;">Available for emergency repairs and inquiries.</p>
+                <br>
+                <p><i class="fas fa-phone-alt" style="color: var(--water-blue);"></i> <a href="tel:6289402064" class="phone-link">6289402064</a></p>
+                <p><i class="fas fa-phone-alt" style="color: var(--water-blue);"></i> <a href="tel:6294024523" class="phone-link">6294024523</a></p>
+                <p><i class="fas fa-phone-alt" style="color: var(--water-blue);"></i> <a href="tel:7001530771" class="phone-link">7001530771</a></p>
+                
+                <a href="https://wa.me/916294024523" class="btn-whatsapp" style="margin-top: 15px; width: 100%; justify-content: center; font-size: 1rem;">
+                    <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                </a>
+            </div>
+
+            <div class="contact-card">
+                <h3><i class="fas fa-map-marked-alt"></i> Branch Offices</h3>
+                <div class="loc-grid" style="margin-bottom: 25px;">
+                    <span class="loc-tag" style="background: var(--water-blue); font-weight: bold; color:white;"><i class="fas fa-building"></i> Salt Lake</span>
+                    <span class="loc-tag" style="background: var(--water-blue); font-weight: bold; color:white;"><i class="fas fa-building"></i> Newtown</span>
+                </div>
+
+                <h3><i class="fas fa-store"></i> Store & Coverage Areas</h3>
+                <div class="loc-grid">
+                    <span class="loc-tag">Nandigram</span>
+                    <span class="loc-tag">Ramdeb Nagar</span>
+                    <span class="loc-tag">Kalagachia</span>
+                    <span class="loc-tag">Maheshpur</span>
+                    <span class="loc-tag">Tetultala</span>
+                    <span class="loc-tag">Garhchakraberia</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FLOATING WHATSAPP -->
+    <a href="https://wa.me/916294024523?text=Hello,%20I%20need%20Water%20Purifier%20Assistance." target="_blank" class="float-wa">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- DYNAMIC POPUP MODAL -->
+    <div class="modal-overlay" id="serviceModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+            <img src="" alt="Service Image" class="modal-image" id="modalImg">
+            <div class="modal-body">
+                <h2 id="modalTitle">Title</h2>
+                <p id="modalDesc">Description goes here.</p>
+                <a href="tel:6289402064" class="btn-call" style="width: 100%; justify-content: center;"><i class="fas fa-phone-alt"></i> Call for this Service</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT FOR FUNCTIONALITY -->
+    <script>
+        // 1. Mobile Sidebar App Drawer Logic
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const navItems = document.querySelectorAll('.nav-item');
+
+        function openMenu() {
+            navMenu.classList.add('active');
+            menuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Stop background scrolling
+        }
+
+        function closeMenu() {
+            navMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+
+        menuBtn.addEventListener('click', openMenu);
+        menuOverlay.addEventListener('click', closeMenu);
+        
+        navItems.forEach(item => {
+            item.addEventListener('click', closeMenu);
+        });
+
+        // 2. Scroll Reveal Animation
+        const reveals = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            reveals.forEach(reveal => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 80) { reveal.classList.add('active'); }
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Trigger immediately on load
+
+        // 3. Dynamic Modal Logic
+        const modalData = {
+            repair: {
+                title: "Rapid RO Repair",
+                desc: "Experiencing low water flow, leakage, or bad taste? Our expert technicians arrive promptly to diagnose and replace faulty components like S.M.P.S, PCB boards, or worn-out Booster Pumps using 100% genuine parts.",
+                img: "repair.jpg"
+            },
+            service: {
+                title: "Routine Service & Maintenance",
+                desc: "Don't wait for your purifier to break down. We offer comprehensive servicing including Carbon/Sediment filter replacement, RO membrane cleaning, and IR bowl sanitization to ensure your family drinks perfectly safe water.",
+                img: "filter.webp"
+            },
+            sales: {
+                title: "Sales & Installation",
+                desc: "Looking for a new machine? We supply and seamlessly install domestic models (8 LPH, 10 LPH, 25 LPH) and massive commercial setups (100+ LPH & Solar Plants) tailored to your exact water consumption needs.",
+                img: "installation.webp"
+            }
+        };
+
+        const modalOverlay = document.getElementById('serviceModal');
+        const mTitle = document.getElementById('modalTitle');
+        const mDesc = document.getElementById('modalDesc');
+        const mImg = document.getElementById('modalImg');
+
+        function openModal(serviceKey) {
+            const data = modalData[serviceKey];
+            mTitle.innerText = data.title;
+            mDesc.innerText = data.desc;
+            mImg.src = data.img;
+            modalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) closeModal();
+        });
+    </script>
+</body>
+</html>
